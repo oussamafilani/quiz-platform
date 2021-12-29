@@ -5,6 +5,10 @@ const { QueryTypes } = require('sequelize');
 const db = require('../models');
 
 
+const {validationResult } = require('express-validator');
+
+
+
 
 
 module.exports={
@@ -20,7 +24,6 @@ module.exports={
     },
 
     Create: async (req, res) => {
-
 
       // Finds the validation errors in this request and wraps them in an object with handy functions
       const errors = validationResult(req);
