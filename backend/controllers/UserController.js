@@ -1,36 +1,26 @@
-
-const express = require("express");
-const router = express.Router()
-
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 
 const { QueryTypes } = require('sequelize');
-const db = require('../../models');
-
-const {validationResult } = require('express-validator');
-
-const {RegesterSchema } = require('../../schema/RegesterSchema');
+const db = require('../models');
 
 
 
 
+module.exports={
 
+    GatAll: async (req,res)=>{
+        // Find all users
+        await db.User.findAll()
+        .then((user) => {
+            res.status(200).json({user})
+        }).catch((err) =>{
+            res.status(404).json({message : "Not Found"})
+        }) 
+    },
 
-// const User = require('../../controllers/UserController')
+    Create: async (req, res) => {
 
-
-
-
-
-
-// user endpoint
-// router.get("/user", User.GatAll );
-
-
-router.post(
-    '/user',
-    RegesterSchema,
-    
-    async (req, res) => {
 
       // Finds the validation errors in this request and wraps them in an object with handy functions
       const errors = validationResult(req);
@@ -46,7 +36,10 @@ router.post(
             role: req.body.role
         }
       }).then(user =>  res.status(200).send(user));
-    }
-  );
+    },
 
-  module.exports = router
+    // Delete: async (req, res) => {},
+
+    // Update: async (req, res) => {},
+
+}
