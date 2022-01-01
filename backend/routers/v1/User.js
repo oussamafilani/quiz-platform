@@ -6,18 +6,13 @@ const router = express.Router()
 
 const {RegesterSchema } = require('../../schema/RegesterSchema');
 
-
 const User = require('../../controllers/UserController')
 
 
-
-
-
-
 // user endpoint
-router.get("/user", User.GatAll );
+router.get("/users", User.GatAll );
 
 
-router.post('/user', RegesterSchema, User.Create);
+router.post('/users', RegesterSchema, User.Create);
 
   module.exports = router

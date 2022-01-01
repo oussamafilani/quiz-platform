@@ -15,6 +15,7 @@ module.exports={
 
     GatAll: async (req,res)=>{
         // Find all users
+
         await db.User.findAll()
         .then((user) => {
             res.status(200).json({user})
