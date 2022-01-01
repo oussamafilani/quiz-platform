@@ -7,4 +7,6 @@ router.put("/students", async (req,res)=>{res.status(200).send({message:"hello S
 router.delete("/students", async (req,res)=>{res.status(200).send({message:"hello Student"})});
 
 
+
+
   module.exports = router

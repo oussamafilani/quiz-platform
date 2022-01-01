@@ -2,14 +2,14 @@ const { body} = require('express-validator');
 
 
 const RegesterSchema = [
-     // must be at least 5 chars long
-     body('firstName').isLength({ min: 5 }).withMessage('must be 5 or more'),
-     //must be at least 5 chars long
-     body('lastName').matches(/^(?=.{5,50}$)[a-z]+(?:['_.\s][a-z]+)*$/i),
+
      // username must be an email
-     body('email').isEmail(),
+     body('email').isEmail().withMessage('Email not Valid'),
+     //
+     body('password').matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/i)
+     .withMessage('A minimum 8 characters password contains a combination of uppercase and lowercase letter and number are required'),
      // role must be not null
-     body('role').notEmpty(),
+     // body('role').notEmpty(),
 ]
 
 module.exports = {RegesterSchema}
