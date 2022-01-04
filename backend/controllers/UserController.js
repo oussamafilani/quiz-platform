@@ -18,20 +18,10 @@ const {validationResult } = require('express-validator');
 
 module.exports={
 
-    // GatAll: async (req,res)=>{
-    //     // Find all users
-
-    //     await db.User.findAll()
-    //     .then((user) => {
-    //         res.status(200).json({user})
-    //     }).catch((err) =>{
-    //         res.status(404).json({message : "Not Found"})
-    //     }) 
-    // },
 
     Register: async (req, res) => {
 
-      const { email, password, role } = req.body;
+      const {email, password, role } = req.body;
 
       const emailExist = await db.User.findOne({ where: { email: email } });
 
@@ -52,7 +42,7 @@ module.exports={
       const user = await db.User.create({
             email: email,
             password: hasdPsw,
-            role: role
+            role: 'teacher'
         
       })
       .then(async (user) =>{
@@ -76,7 +66,7 @@ module.exports={
             to: `${user.email}`, // list of receivers
             subject: 'Confirm Email',
             text: "Email verification", // plain text body
-            html: `Please click this email to confirm your email: <a href="${url}">${url}</a>`,
+            html: `Please click this link to confirm your email: <a href="${url}">${url}</a>`,
           });
 
         res.status(200).send({
@@ -96,7 +86,9 @@ module.exports={
 
       const userUpdate = await user.update({ confirmed: true })
 
-      res.status(200).send(userUpdate)
+      // res.status(200).send(userUpdate)
+
+      res.redirect('http://localhost:3000/login')
 
     },
 
@@ -121,7 +113,7 @@ module.exports={
       if (!user.confirmed) return  res.status(400).send({ message : "Please confirm your email address"});
       
 
-      const accessToken = jwt.sign({user_id: user.id, email},  process.env.ACCESS_TOKEN_SECRET ,{ expiresIn: '3m' } )
+      const accessToken = jwt.sign({user_id: user.id, email},  process.env.ACCESS_TOKEN_SECRET ,{ expiresIn: '1d' } )
 
       res.json({
         accessToken: accessToken
