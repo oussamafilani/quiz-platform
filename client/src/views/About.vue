@@ -4,15 +4,4 @@
   </div>
 </template>
 
-<script>
-export default {
-  computed: {
-    hide() {
-      console.log("halwa");
-      return this.$route.path === "/";
-    },
-  },
-};
-</script>
-
 
