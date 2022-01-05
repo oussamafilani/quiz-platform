@@ -14,16 +14,6 @@ router.get("/confirmation/:token",verifyemailToken , User.Confirm );
 router.post("/login", User.Login );
 
 
-router.get("/post",authonticateToken , (req,res)=>{
-
-    
-      
-    res.status(200).send({
-    post:['book','oussama'],
-    user : req.user
-    })
-  
-  });
 
 // router.get("/logout", User.Logout );
 

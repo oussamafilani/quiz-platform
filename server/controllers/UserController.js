@@ -1,7 +1,7 @@
-require('dotenv').config();
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+require('dotenv').config();
 
 // const multer  = require('multer')
 // const upload = multer({ dest: 'uploads/' })
@@ -88,7 +88,7 @@ module.exports={
 
       // res.status(200).send(userUpdate)
 
-      res.redirect('http://localhost:3000/login')
+      res.redirect('http://localhost:8081/login')
 
     },
 

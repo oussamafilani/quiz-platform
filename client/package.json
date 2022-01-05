@@ -6,9 +6,10 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "sass": "vue-cli-service lint"
+    "sass": "sass --watch ./src/assets/sass:./public/style"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "glob-parent": "^6.0.2",
     "vue": "^3.0.0",
